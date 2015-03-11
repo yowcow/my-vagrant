@@ -21,7 +21,7 @@ bash 'profile' do
   group 'vagrant'
   code <<-COMMAND
 echo '
-export PATH="~/.anyenv/bin:$PATH"
+export PATH="/home/vagrant/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
 ' > /home/vagrant/.anyenvrc
   COMMAND
