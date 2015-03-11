@@ -12,6 +12,7 @@
   curl
   git
   libexpat1-dev
+  libffi-dev
   libpng12-dev
   libxml2-dev
   mongodb
