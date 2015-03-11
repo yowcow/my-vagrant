@@ -14,4 +14,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 443, host: 8443
 
   config.vm.synced_folder "sync/", "/srv/sync", create: true
+
+  config.vm.provision "chef_zero" do |chef|
+    chef.add_recipe 'base'
+    chef.add_recipe 'anyenv'
+  end
 end
