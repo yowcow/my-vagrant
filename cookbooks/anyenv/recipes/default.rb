@@ -26,3 +26,20 @@ eval "$(anyenv init -)"
 ' > /home/vagrant/.anyenvrc
   COMMAND
 end
+
+%w{
+  plenv
+  ndenv
+  rbenv
+}.each do |langenv|
+  bash "install #{langenv}" do
+    user  'vagrant'
+    group 'vagrant'
+    environment 'ANYENV_ROOT' => '/home/vagrant/.anyenv', 'HOME' => '/home/vagrant'
+    code <<-COMMAND
+    . /home/vagrant/.anyenvrc
+    anyenv install #{langenv}
+    COMMAND
+    creates "/home/vagrant/.anyenv/envs/#{langenv}"
+  end
+end
