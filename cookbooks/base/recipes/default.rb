@@ -9,6 +9,7 @@
 
 %w{
   build-essential
+  cronolog
   curl
   git
   libexpat1-dev
@@ -24,6 +25,7 @@
   tmux
   tree
   vim
+  zip
   zsh
 }.each do |pkg|
   package pkg do
