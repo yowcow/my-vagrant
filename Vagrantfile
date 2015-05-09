@@ -15,6 +15,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.synced_folder "sync/", "/srv/sync", create: true
 
+  config.vm.provision "shell",
+    inline: "apt-get update && apt-get -y upgrade"
+
   config.vm.provision "chef_zero" do |chef|
     chef.add_recipe 'base'
     chef.add_recipe 'anyenv'
