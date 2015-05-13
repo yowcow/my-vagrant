@@ -21,6 +21,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "chef_zero" do |chef|
     chef.add_recipe 'base'
     chef.add_recipe 'anyenv'
+    chef.add_recipe 'nginx'
     chef.add_recipe 'sysstat'
   end
 end
