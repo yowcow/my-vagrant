@@ -30,10 +30,10 @@
   libdb5.1-dev
   libjpeg-dev
   libpng-dev
-  libXpm-dev
+  libxpm-dev
   libfreetype6-dev
   libt1-dev
-  libgmp3-dev
+  libgmp-dev
   libc-client-dev
   libldap2-dev
   libmcrypt-dev
@@ -57,9 +57,60 @@
   end
 end
 
-php_version = '5.3.3'
+%w{
+  gmp.h
+}.each do |file|
+  link "/usr/include/#{file}" do
+    link_type :symbolic
+    to "/usr/include/x86_64-linux-gnu/#{file}"
+    action :create
+  end
+end
 
-remote_file "/tmp/php-#{php_version}.tar.gz" do
-  source "http://museum.php.net/php5/php-#{php_version}.tar.gz"
+%w{
+  libjpeg.a
+  libjpeg.so
+  libpng.a
+  libpng.so
+}.each do |file|
+  link "/usr/lib/#{file}" do
+    link_type :symbolic
+    to "/usr/lib/x86_64-linux-gnu/#{file}"
+    action :create
+  end
+end
+
+remote_file "/tmp/php-5.3.3.tar.gz" do
+  source "http://museum.php.net/php5/php-5.3.3.tar.gz"
   action :create_if_missing
+end
+
+bash "Extract tarball" do
+  code <<-COMMAND
+    cd /tmp
+    rm -rf php-5.3.3
+    tar xvzf php-5.3.3.tar.gz
+  COMMAND
+end
+
+template "/tmp/php-5.3.3.patch" do
+  source 'php-5.3.3.patch'
+end
+
+bash "Patch PHP" do
+  code <<-COMMAND
+    cd /tmp/php-5.3.3
+    patch -p0 < /tmp/php-5.3.3.patch
+  COMMAND
+end
+
+bash "Install" do
+  code <<-COMMAND
+    cd /tmp/php-5.3.3
+    ./configure \
+      --prefix=/usr/local/php-5.3.3 \
+      --disable-dom
+    make
+    make install
+  COMMAND
 end
