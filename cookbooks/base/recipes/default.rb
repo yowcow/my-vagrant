@@ -18,7 +18,6 @@
   libxml2-dev
   mongodb
   mysql-server-5.6
-  nginx
   screen
   sqlite3
   supervisor
