@@ -23,5 +23,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe 'anyenv'
     chef.add_recipe 'nginx'
     chef.add_recipe 'sysstat'
+    chef.add_recipe 'php'
   end
 end
