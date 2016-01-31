@@ -17,4 +17,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     && sudo apt-get install -y ruby2.0 git \\
     && sudo gem2.0 i itamae --no-rdoc --no-ri
   CMD
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.customize ["modifyvm", :id, "--memory", "2048"]
+  end
 end
