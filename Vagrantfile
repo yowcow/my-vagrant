@@ -15,7 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", inline: <<-CMD
     sudo apt-get update \\
     && sudo apt-get install -y ruby2.0 git \\
-    && sudo gem2.0 i itamae --no-rdoc --no-ri
+    && sudo gem2.0 i bundler --no-rdoc --no-ri
   CMD
 
   config.vm.provider "virtualbox" do |vb|
