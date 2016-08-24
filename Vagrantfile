@@ -13,9 +13,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder "sync/", "/srv/sync", create: true
 
   config.vm.provision "shell", inline: <<-CMD
-    sudo apt-get update \\
-    && sudo apt-get install -y ruby2.0 git \\
-    && sudo gem2.0 i itamae --no-rdoc --no-ri
+    sudo apt-get -q update
+    sudo apt-get -yq install ruby2.0 ruby2.0-dev git
+    sudo gem2.0 i bundler --no-rdoc --no-ri
   CMD
 
   config.vm.provider "virtualbox" do |vb|
