@@ -5,7 +5,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box      = "ubuntu/trusty64"
+  config.vm.box      = "box-cutter/ubuntu1604"
 
   config.vm.hostname = "personal-vagrant"
   config.vm.network "private_network", ip: "192.168.33.10"
@@ -14,8 +14,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "shell", inline: <<-CMD
     sudo apt-get update \\
-    && sudo apt-get install -y ruby2.0 git \\
-    && sudo gem2.0 i bundler --no-rdoc --no-ri
+    && sudo apt-get install -y ruby git \\
+    && sudo gem i bundler --no-rdoc --no-ri
   CMD
 
   config.vm.provider "virtualbox" do |vb|
