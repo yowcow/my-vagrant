@@ -15,7 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "shell", inline: <<-CMD
     sudo apt-get update \\
-    && sudo apt-get install -y ruby git \\
+    && sudo apt-get install -y make ruby git \\
     && sudo gem i bundler --no-rdoc --no-ri
   CMD
 
