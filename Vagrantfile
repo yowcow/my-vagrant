@@ -5,7 +5,8 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box      = "box-cutter/ubuntu1604"
+  #config.vm.box      = "box-cutter/ubuntu1604"
+  config.vm.box = "ubuntu/xenial64"
 
   config.vm.hostname = "personal-vagrant"
   config.vm.network "private_network", ip: "192.168.33.10"
