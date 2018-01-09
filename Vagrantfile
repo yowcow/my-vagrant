@@ -18,8 +18,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     && sudo gem i bundler --no-rdoc --no-ri
   CMD
 
-  config.vm.provider "virtualbox" do |vb|
-    vb.memory = 4096
-    vb.cpus = 4
-  end
+  #config.vm.provider "virtualbox" do |vb|
+  #  vb.memory = 4096
+  #  vb.cpus = 2
+  #end
 end
