@@ -5,7 +5,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "bento/ubuntu-16.04"
+  config.vm.box = "bento/ubuntu-18.04"
 
   config.vm.hostname = "my-vagrant"
   config.vm.network "private_network", ip: "192.168.33.10"
@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "shell", inline: <<-CMD
     sudo apt-get update \\
-    && sudo apt-get install -y make ruby git \\
+    && sudo apt-get install -y ifupdown make ruby git \\
     && sudo gem i bundler --no-rdoc --no-ri
   CMD
 
