@@ -1,5 +1,10 @@
-My Memo
-=======
+MY-VAGRANT
+==========
+
+Ubuntu 18.04 Bionic Beaver box.
+
+Memo
+----
 
 Things I always forget about.
 
