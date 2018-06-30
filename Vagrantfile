@@ -4,13 +4,35 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
+disk_path = "./external-disk.vdi"
+# see `cat ~/.vagrant.d/boxes/*/virtualbox/box.ovf | grep -i storage`
+# for storage controller name
+storagectl_name = "SATA Controller"
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "bento/ubuntu-18.04"
 
   config.vm.hostname = "my-bionic"
   config.vm.network "private_network", ip: "192.168.33.10"
 
-  config.vm.synced_folder "sync/", "/srv/sync", create: true
+  config.vm.provider "virtualbox" do |vb|
+    unless File.exists?(disk_path)
+      vb.customize [
+        "createhd",
+        "--filename", disk_path,
+        "--variant", "Fixed",
+        "--size", 100 * 1024,
+      ]
+    end
+    vb.customize [
+      "storageattach", :id,
+      "--storagectl", storagectl_name,
+      "--port", 1,
+      "--device", 0,
+      "--type", "hdd",
+      "--medium", disk_path,
+    ]
+  end
 
   config.vm.provision "shell", inline: <<-CMD
     sudo apt-get update \\
