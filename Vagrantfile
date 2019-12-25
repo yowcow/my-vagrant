@@ -15,11 +15,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", inline: <<-CMD
     sudo apt-get update \\
     && sudo apt-get install -y ifupdown make ruby git \\
-    && sudo gem i bundler --no-rdoc --no-ri
+    && sudo gem i bundler
   CMD
-
-  #config.vm.provider "virtualbox" do |vb|
-  #  vb.memory = 4096
-  #  vb.cpus = 2
-  #end
 end
