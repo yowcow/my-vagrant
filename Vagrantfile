@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "shell", inline: <<-CMD
     sudo apt-get update \\
-    && sudo apt-get install -y ifupdown make ruby git \\
+    && sudo apt-get install -y ifupdown zsh make ruby git tmux \\
     && sudo gem i bundler
   CMD
 end
