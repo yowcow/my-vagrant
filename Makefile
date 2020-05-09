@@ -1,8 +1,11 @@
 all:
-	vagrant up
+	vagrant plugin install vagrant-vbguest
 
 update:
 	vagrant plugin update
 	vagrant vbguest
+
+%:
+	vagrant $*
 
 .PHONY: all update
