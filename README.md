@@ -1,25 +1,18 @@
 MY-VAGRANT
 ==========
 
-Ubuntu 18.04 Bionic Beaver box.
+Debian box for various work.
+
 
 Memo
 ----
 
-Things I always forget about.
+### Adding an external storage
 
-1. Boot/Halt
-------------
-
-    % vagrant up
-    % vagrant halt
-
-2. Initial provisioning
------------------------
-
-    % vagrant provision --provision-with=shell
-
-3. Configure SSH to instance
-----------------------------
-
-    % vagrant ssh-config --host melody >> ~/.ssh/config
+* Create a storage on existing SATA controller, from VirtualBox console.
+* Boot the box and find device path: `lsblk`
+* Format the device in ext4: `mkfs.ext4 /dev/the/new/device`
+* Create a directory for its mount point, e.g. `/ext`, and try mount: `mount /dev/the/new/device /ext`
+* Mount automatically at boot by adding a new entry to `/etc/fstab`:
+    * Something like: `/dev/the/new/device /ext ext4 defaults 0 0`
+* Reboot and check if the storage is mounted
