@@ -4,5 +4,6 @@
 *.vhd
 .DS_Store
 
-/.vagrant
+/.vagrant*
 /sync
+/debian-setup
