@@ -5,25 +5,10 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  #config.vm.define :default do |node|
-  #  node.vm.box = "bento/ubuntu-18.04"
-
-  #  node.vm.hostname = "my-bionic"
-  #  node.vm.network "private_network", ip: "192.168.33.10"
-
-  #  node.vm.synced_folder "sync/", "/srv/sync", create: true
-
-  #  node.vm.provision "shell", inline: <<-CMD
-  #    sudo apt-get update \\
-  #    && sudo apt-get install -y ifupdown zsh make ruby git tmux \\
-  #    && sudo gem i bundler
-  #  CMD
-  #end
-
   config.vm.define :debian do |node|
-    node.vm.box = "debian/testing64"
+    node.vm.box = "bento/debian-10"
 
-    node.vm.hostname = "debian-vagrant"
+    node.vm.hostname = "dev-x28"
     node.vm.network "private_network", ip: "192.168.33.11"
 
     node.vm.synced_folder ".", "/vagrant", disabled: true
