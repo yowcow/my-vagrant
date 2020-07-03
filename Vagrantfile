@@ -15,6 +15,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     node.vm.synced_folder "sync/", "/srv/sync", create: true
     node.vm.synced_folder "debian-setup/", "/srv/debian-setup", create: true
 
+    node.vm.provider 'virtualbox' do |vb|
+      vb.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
+    end
+
     node.vm.provision "shell", inline: <<-CMD
       sudo apt update && \\
       sudo apt -y full-upgrade && \\
