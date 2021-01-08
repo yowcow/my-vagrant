@@ -5,19 +5,15 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.define :debian do |node|
-    node.vm.box = "bento/debian-10"
+  config.vm.define :ubuntu do |node|
+    config.vm.box = "bento/ubuntu-20.04"
 
     node.vm.hostname = "dev-x28"
     node.vm.network "private_network", ip: "192.168.33.11"
 
     node.vm.synced_folder ".", "/vagrant", disabled: true
     node.vm.synced_folder "sync/", "/srv/sync", create: true
-    node.vm.synced_folder "debian-setup/", "/srv/debian-setup", create: true
-
-    node.vm.provider 'virtualbox' do |vb|
-      vb.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
-    end
+    node.vm.synced_folder "ubuntu-setup/", "/srv/ubuntu-setup", create: true
 
     node.vm.provision "shell", inline: <<-CMD
       sudo apt update && \\

@@ -1,8 +1,8 @@
-all: debian-setup
+all: ubuntu-setup
 	vagrant plugin install vagrant-vbguest
 
-debian-setup:
-	git clone git@github.com:yowcow/debian-setup.git $@
+ubuntu-setup:
+	git clone git@github.com:yowcow/ubuntu-setup.git $@
 
 update:
 	vagrant plugin update
