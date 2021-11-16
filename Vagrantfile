@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box = "bento/ubuntu-20.04"
 
     node.vm.hostname = "dev-x28"
-    node.vm.network "private_network", ip: "192.168.33.11"
+    node.vm.network "private_network", ip: "192.168.57.11" # should be within the range 192.168.56.0/21
 
     node.vm.synced_folder ".", "/vagrant", disabled: true
     node.vm.synced_folder "sync/", "/srv/sync", create: true
